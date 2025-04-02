@@ -1,8 +1,7 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import Tabs from './components/Tabs.vue'
-const tabs = ['Home', 'Profile', 'About', 'Settings']
-const activeTab = ref(tabs[0])
+import Tabs from "./components/Tabs.vue";
+const tabs = ["Home", "Profile", "About", "Settings"];
+const activeTab = defineModel("activeTab");
 </script>
 
 <template>
@@ -10,7 +9,3 @@ const activeTab = ref(tabs[0])
     <Tabs :tabs="tabs" v-model="activeTab" />
   </div>
 </template>
-
-<style scoped>
-
-</style>

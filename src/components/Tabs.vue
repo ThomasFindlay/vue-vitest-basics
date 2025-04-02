@@ -1,35 +1,59 @@
 <script setup>
-  const props = defineProps({
-    tabs: {
-      type: Array,
-      default: () => ([])
-    },
-    activeTab: {
-      type: String
-    }
-  })
+const props = defineProps({
+  tabs: {
+    type: Array,
+    default: () => [],
+  },
+  modelValue: {
+    type: String,
+  },
+});
+
+const emit = defineEmits(["update:model-value"]);
 </script>
 
 <template>
-  <div :class="$style.root">
-    <ul :class="$style.tab_list">
-      <li :class="$style.tab_list_item" v-for="tab of tabs" :key="tab">
-        <button type="button" @click="">{{ tab }}</button>
+  <div>
+    <ul :class="$style.tab_list" role="tablist">
+      <li v-for="tab of tabs" :key="tab" role="presentation">
+        <button
+          type="button"
+          :class="[
+            $style.tab_button,
+            tab === props.modelValue && $style.active,
+          ]"
+          role="tab"
+          :id="`tab-${tab}`"
+          :aria-selected="tab === props.modelValue"
+          @click="emit('update:modelValue', tab)"
+        >
+          {{ tab }}
+        </button>
       </li>
     </ul>
   </div>
 </template>
 <style module>
-.root {}
-
 .tab_list {
   list-style: none;
   display: flex;
   align-items: center;
   gap: 1rem;
+  border-bottom: 1px solid #ccc;
+  padding: 0;
 }
 
-.tab_list_item {
-  
+.tab_button {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: #007bff;
+}
+
+.active {
+  border-bottom: 2px solid #007bff;
+  background-color: green;
+  color: white;
 }
 </style>
