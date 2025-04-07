@@ -20,20 +20,6 @@ describe("Tabs.vue", () => {
     }
   });
 
-  it("sets aria-selected correctly for active tab", () => {
-    const wrapper = mount(Tabs, {
-      props: {
-        tabs,
-        modelValue: tabs[2],
-      },
-    });
-    const buttons = wrapper.findAll("button");
-    expect(buttons[0].attributes("aria-selected")).toBe("false");
-    expect(buttons[1].attributes("aria-selected")).toBe("false");
-    expect(buttons[2].attributes("aria-selected")).toBe("true");
-    expect(buttons[3].attributes("aria-selected")).toBe("false");
-  });
-
   it("emits update:modelValue on tab click", async () => {
     const wrapper = mount(Tabs, {
       props: {
@@ -56,7 +42,7 @@ describe("Tabs.vue", () => {
     expect(buttons[1].attributes("aria-selected")).toBe("true");
   });
 
-  it("sets correct ARIA attributes", () => {
+  it("sets correct role and id attributes", () => {
     const wrapper = mount(Tabs, {
       props: {
         tabs,

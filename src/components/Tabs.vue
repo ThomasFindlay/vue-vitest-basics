@@ -9,7 +9,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["update:model-value"]);
+const emit = defineEmits(["update:modelValue"]);
 </script>
 
 <template>
